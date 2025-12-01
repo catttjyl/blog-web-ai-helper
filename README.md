@@ -1,6 +1,7 @@
 # 全栈博客系统（AI助手）
 > 基于 Next.js App Router (SSR) + Express + MySQL 的全栈博客系统，配有 AI 辅助写作功能，支持 markdown 编辑器，首屏快速加载、SEO 友好。
 
+> [!IMPORTANT]
 > 理念：AI 不应该是代替用户写文章，而是**辅助创作** + **提升效率** + **保留用户表达**
 
 ## 功能支持
@@ -40,14 +41,24 @@
 
 
 ## 效果展示
+
+* 博客列表页
+
 <img width="1180" height="981" alt="image" src="https://github.com/user-attachments/assets/0609e668-28e2-4761-92a8-9f07bf029bcf" />
+
+* 博客详情页（浏览态）
 <img width="1180" height="981" alt="image" src="https://github.com/user-attachments/assets/950afdf4-a28f-4215-a509-348c30caa411" />
+
+* 博客详情页（编辑态）
 <img width="1180" height="981" alt="image" src="https://github.com/user-attachments/assets/6a61b9bd-edb4-4c3b-84c3-0c6e3e6643b2" />
 
+* AI初始大纲生成
+<img width="1036" height="605" alt="image" src="https://github.com/user-attachments/assets/94dc4fbc-5332-49a1-9fc8-a1277165d311" />
 
+* AI修改文本选中字段，可选择是否替换文本
 <img width="822" height="436" alt="image" src="https://github.com/user-attachments/assets/2d150bed-4876-49b5-b9a6-4b20ed635a84" />
 <img width="1040" height="675" alt="image" src="https://github.com/user-attachments/assets/52166bab-6711-4f8a-a6d9-83283242ff06" />
-<img width="1036" height="605" alt="image" src="https://github.com/user-attachments/assets/94dc4fbc-5332-49a1-9fc8-a1277165d311" />
+
 
 
 ## 代码结构
@@ -92,11 +103,10 @@ my-blog-project
 ```
 ## 核心架构说明
 ### 1. SSR 渲染（React Server Components）
-* 项目使用 Next.js App Router 的 RSC 实现 SSR：
+* 项目使用 Next.js App Router 的 RSC 实现 SSR
   * 列表页：在服务器端 fetch posts → 渲染 HTML
   * 详情页：在服务器端 fetch post → 渲染 HTML + 初始 Markdown 内容
   * 新建/编辑页：SSR 提供初始数据，编辑在 Client Component 里完成
-
 * 优点：
   * ✔ 更快首屏
   * ✔ SEO 友好
@@ -120,16 +130,34 @@ router.refresh(); // SSR 再渲染一次，拿到最新内容
 
 ## 如何运行
 1. 启动前端
+```
+cd client
+npm install
+npm run dev
+```
 2. 启动后端
+```
+cd server
+npm install
+npm run dev
+```
+按照.env.example内格式进行环境配置：
+```cp .env.example .env```
+
+> 免费获取一个[Groq API key](https://console.groq.com/keys)和[Gemini API key](https://aistudio.google.com/app/apikey?_gl=1*1c81p5h*_ga*NzM3NDQ1NTkyLjE3NjQ0MzkxNzQ.*_ga_P1DBVKWT6V*czE3NjQ1NTk4NjYkbzQkZzEkdDE3NjQ1NjA3NjUkajEyJGwwJGgxNjc1OTYyMjc0)
+
 3. 启动数据库（用 docker）
 
 > 如果你没有 docker 客户端，需要[前往下载](https://www.docker.com/products/docker-desktop/)
 
-> 在[这里](https://console.groq.com/keys)获取Groq API key
+同样在.env中完成db环境配置
+```docker compose up -d```
 
 
-长期目标：
+
+## 长期目标：
+- [ ] 文章标签筛选
+- [ ] 加密登录系统
+- [ ] 支持文章AI续写
 - [ ] task分离 Python AI 微服务
 - [ ] 支持向量数据库（检索增强）、文本分析、NLP、embedding 管理
-- [ ] 文章标签筛选
-- [ ] 支持文章AI续写
