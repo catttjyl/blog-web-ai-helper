@@ -1,14 +1,15 @@
 # 全栈博客系统（AI助手）
-
 > 基于 Next.js App Router (SSR) + Express + MySQL 的全栈博客系统，配有 AI 辅助写作功能，支持 markdown 编辑器，首屏快速加载、SEO 友好。
 
+> 理念：AI 不应该是代替用户写文章，而是**辅助创作** + **提升效率** + **保留用户表达**
+
 ## 功能支持
-### SSR 页面
+### 1. SSR 页面
   * 博客列表页（支持不同排序类型、分页切换）
   * 博客详情页
     * 新增/编辑（支持单屏切换预览当前Markdown效果、保存、放弃编辑）
     * 浏览（Markdown展示）
-### 后端API
+### 2. 后端API
   * 博客文章
     * 获取文章列表（GET/posts）
     * 获取单篇文章内容（GET/posts/:id）
@@ -22,23 +23,21 @@
   * AI助手
     * 自动生成文章大纲（POST/ai/outline，文章概括和风格必传）
     * 修改文章选中部分（POST/ai/rephrase，完成文章内容和选择字段必传）
-### 数据库
+### 3. 数据库
   * MySQL（id字段自动increment，日期相关的字段自动取当前时间）
 
 
 ## 技术栈
 项目采用 “前端 SSR + 后端 Express + MYSQL 数据库” 的完整工程化结构，涵盖了从页面渲染到数据持久化的完整链路。
-### 前端
-First Header  | Second Header
+技术  | 作用/优点
 ------------- | -------------
-Next.js 16（App Router）  | Content Cell
-react-markdown + remark-gfm 插件  | 支持 GitHub Markdown 风格
-mysql2
-Docker
+[Next.js 16（App Router）](https://nextjs.org/blog/next-16)  | 提供 SSR、文件路由管理，实现首屏渲染快、SEO 友好
+[react-markdown](https://www.npmjs.com/package/react-markdown) + [remark-gfm](https://www.npmjs.com/package/remark-gfm)  | 支持 GitHub Markdown 风格
+[Express](https://expressjs.com/en/starter/hello-world.html)  | 后端 REST API 框架；负责处理 CRUD 逻辑、参数校验、路由管理
+[mysql2](https://sidorares.github.io/node-mysql2/docs)  | MySQL 数据库驱动
+[Docker](https://www.docker.com/get-started/)  | 用容器快速启动 MySQL，无需本地安装数据库
+[Grop Moonshot API](https://console.groq.com/playground?model=moonshotai/kimi-k2-instruct-0905) & [Google Gemini API](https://ai.google.dev/gemini-api/docs/quickstart) |  LLM API 调用大语言模型
 
-### 后端
-### 
-理念：AI 不应该是代替用户写文章，而是**辅助创作** + **提升效率** + **保留用户表达**
 
 ## 效果展示
 <img width="1180" height="981" alt="image" src="https://github.com/user-attachments/assets/0609e668-28e2-4761-92a8-9f07bf029bcf" />
@@ -66,7 +65,7 @@ my-blog-project
 │   │       │    └── page.js        // SSR 博客详情/编辑页
 │   │       └── new/
 │   │            └── page.js        // SSR 博客新增页
-│   ├── components/                 // 复用组件
+│   ├── components/                 // Client Component 复用组件
 │   │    ├── PostList.jsx           // 博客列表展示
 │   │    ├── TextArea.jsx           // 博客编辑/展示区
 │   │    ├── CommentArea.jsx        // 博客评论区
