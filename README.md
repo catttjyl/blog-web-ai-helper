@@ -151,7 +151,26 @@ npm run dev
 > 如果你没有 docker 客户端，需要[前往下载](https://www.docker.com/products/docker-desktop/)
 
 同样在.env中完成db环境配置
-```docker compose up -d```
+```docker compose up -d
+
+CREATE TABLE posts (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ title VARCHAR(255) NOT NULL,
+ content TEXT NOT NULL,
+ password VARCHAR(255),
+ create_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ last_edit_date DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE comments (
+ id INT AUTO_INCREMENT PRIMARY KEY,
+ post_id INT NOT NULL,
+ comment_content TEXT NOT NULL,
+ comment_date DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
+);
+
+```
 
 
 
@@ -161,3 +180,4 @@ npm run dev
 - [ ] 支持文章AI续写
 - [ ] task分离 Python AI 微服务
 - [ ] 支持向量数据库（检索增强）、文本分析、NLP、embedding 管理
+- [ ] 多人协作编辑
