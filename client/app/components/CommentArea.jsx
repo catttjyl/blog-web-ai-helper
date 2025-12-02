@@ -55,7 +55,7 @@ export default function CommentArea({ postId, comments }) {
   };
 
   return (
-    <div className="bg-white p-4 mt-8 rounded">
+    <div className="bg-white p-4 mt-8 rounded m-5">
       <Title level={5}>评论区</Title>
       <Divider size="small" />
       <textarea

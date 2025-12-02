@@ -4,7 +4,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useMemo, useEffect } from "react";
 import { DownOutlined, PlusOutlined } from "@ant-design/icons";
-import { Dropdown, Space, Typography, Divider, FloatButton } from "antd";
+import {
+  Dropdown,
+  Space,
+  Typography,
+  Divider,
+  FloatButton,
+  Pagination,
+} from "antd";
 const { Title, Text } = Typography;
 
 import ReactMarkDown from "react-markdown";
@@ -66,8 +73,9 @@ export default function PostList({ posts }) {
         </Dropdown>
       </Divider>
       <div className="w-11/12 mx-auto mt-4">
-        {sortedPosts.length
-          ? sortedPosts.map((post) => {
+        {sortedPosts.length ? (
+          <>
+            {sortedPosts.map((post) => {
               const date = new Date(post[orderBy]);
               const month = new Intl.DateTimeFormat("zh-CN", {
                 month: "long",
@@ -98,8 +106,12 @@ export default function PostList({ posts }) {
                   </Link>
                 </div>
               );
-            })
-          : "暂无文章"}
+            })}
+            <Pagination align="end" defaultCurrent={1} total={posts.length} />
+          </>
+        ) : (
+          "暂无文章"
+        )}
       </div>
       <FloatButton.BackTop />
     </>

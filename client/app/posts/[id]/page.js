@@ -36,7 +36,7 @@ export default async function PostDetailPage({ params }) {
   }).format(new Date(last_edit_date));
   // const post = {id: id, title: "测试文章"+id, content: "这是测试文章"+id+"的内容。"};
   return (
-    <main style={{ padding: "20px" }}>
+    <main>
       <TextArea postId={id} initialTitle={title} initialContent={content} createDate={createDate} lastEditDate={lastEditDate}/>
       <CommentArea postId={id} comments={comments} />
     </main>
